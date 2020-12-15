@@ -1,0 +1,20 @@
+
+public Graph graph_Aleatoire(int taille) {
+        Graph graph = new SingleGraph("Graphe aléatoire");
+        Generator g = new RandomGenerator(15, false, false, "", "cap");
+        g.addSink(graph);
+        g.begin();
+
+        for (int i = 0; i < taille; i++)
+            g.nextEvents();
+        g.end();
+        return graph;
+    }
+    
+    //Initialisation de la source
+     private void init(Graph graph, Node source) {
+        for (Node n : graph) {
+            n.setAttribute("dist", n.getId().equals(source.getId()) ? 0 : Double.POSITIVE_INFINITY);
+            n.setAttribute("parent", new Stack<Node>());
+        }
+    }
